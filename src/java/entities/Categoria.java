@@ -21,11 +21,6 @@ public class Categoria {
     //Comentario HD
     //outro
     
-    
-    
-    
-    
-    
     @Id
     private int id;
     
