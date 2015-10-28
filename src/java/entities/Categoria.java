@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Categoria {
 
+    //Comentario HD
+    
     @Id
     private int id;
     
