@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* */
 package entities;
-
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
