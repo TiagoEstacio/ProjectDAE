@@ -8,7 +8,7 @@ package ejbs;
 import javax.ejb.Stateless;
 
 @Stateless
-public class ResponsibleBean {
+public class ManagerBean {
 
     //TODO
     // Add business logic below. (Right-click in editor and choose

@@ -15,15 +15,15 @@ import javax.ejb.Startup;
 public class ConfigBean {
 
     @EJB
-    private AdministratorBean admiBean;
+    private AdministratorBean administratorBean;
     @EJB
-    private ResponsibleBean respBean;
+    private ManagerBean managerBean;
     @EJB
-    private ParticipantBean partBean;
+    private AttendantBean attendantBean;
     @EJB
     private EventBean eventBean;
     @EJB
-    private CategoryBean catBean;
+    private CategoryBean categoryBean;
     
     
     @PostConstruct

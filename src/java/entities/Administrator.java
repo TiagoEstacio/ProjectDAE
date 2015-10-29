@@ -38,7 +38,7 @@ possa manter atualizada a lista de participantes de determinado evento;
 @NamedQueries({
     @NamedQuery(
         name="getAllAdministrators",
-        query="SELECT ad FROM Administrator ad ORDER BY ad.id"
+        query="SELECT adm FROM Administrator adm ORDER BY adm.id"
     )
 })
 public class Administrator extends User implements Serializable {

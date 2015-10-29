@@ -52,25 +52,25 @@ public class Event implements Serializable {
     private String finishDate;
     
     @ManyToMany
-    @JoinTable(name = "EVENTS_RESPONSIBLES",
+    @JoinTable(name = "EVENTS_MANAGERS",
             joinColumns
             = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID_EVENT"),
             inverseJoinColumns
-            = @JoinColumn(name = "RESPONSIBLES_ID", referencedColumnName = "ID_RESPONSIBLES"))
-    private List<Responsible> responsibles;
+            = @JoinColumn(name = "MANAGERS_ID", referencedColumnName = "ID_MANAGERS"))
+    private List<Manager> managers;
     
     @ManyToMany
-    @JoinTable(name = "EVENTS_PARTICIPANTS",
+    @JoinTable(name = "EVENTS_ATTENDANTS",
             joinColumns
             = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID_EVENT"),
             inverseJoinColumns
-            = @JoinColumn(name = "PARTICIPANTS_ID", referencedColumnName = "ID_PARTICIPANTS"))
-    private List<Participant> participants;
+            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID_ATTENDANTS"))
+    private List<Attendant> attendants;
     
     public Event() {
         this.categorys = new LinkedList<>();
-        this.responsibles = new LinkedList<>();
-        this.participants = new LinkedList<>();
+        this.managers = new LinkedList<>();
+        this.attendants = new LinkedList<>();
     }
 
     public Event(String name,String startDate, String finishDate) {
@@ -78,8 +78,8 @@ public class Event implements Serializable {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.categorys = new LinkedList<>();
-        this.responsibles = new LinkedList<>();
-        this.participants = new LinkedList<>();
+        this.managers = new LinkedList<>();
+        this.attendants = new LinkedList<>();
     }
 
     public Long getId() {
@@ -130,20 +130,20 @@ public class Event implements Serializable {
         this.finishDate = finishDate;
     }
 
-    public List<Responsible> getResponsibles() {
-        return responsibles;
+    public List<Manager> getManagers() {
+        return managers;
     }
 
-    public void setResponsibles(List<Responsible> responsibles) {
-        this.responsibles = responsibles;
+    public void setManagers(List<Manager> managers) {
+        this.managers = managers;
     }
 
-    public List<Participant> getParticipants() {
-        return participants;
+    public List<Attendant> getAttendants() {
+        return attendants;
     }
 
-    public void setParticipants(List<Participant> participants) {
-        this.participants = participants;
+    public void setAttendants(List<Attendant> attendants) {
+        this.attendants = attendants;
     }
     
     public void addCategory(Category category){
@@ -170,52 +170,52 @@ public class Event implements Serializable {
         return this.categorys.size();
     }
     
-    public void addResponsible(Responsible responsible){
+    public void addManager(Manager manager){
         try {
-            if (!responsibles.contains(responsible)){
-                responsibles.add(responsible);
+            if (!managers.contains(manager)){
+                managers.add(manager);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public void removeResponsible(Responsible responsible){
+    public void removeManager(Manager manager){
         try {
-            if (responsibles.contains(responsible)){
-                responsibles.remove(responsible);
+            if (managers.contains(manager)){
+                managers.remove(manager);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfResponsibles(){
-        return this.responsibles.size();
+    public int getNumberOfManagers(){
+        return this.managers.size();
     }
 
-    public void addParticipant(Participant participant){
+    public void addAttendant(Attendant attendant){
         try {
-            if (!participants.contains(participant)){
-                participants.add(participant);
+            if (!attendants.contains(attendant)){
+                attendants.add(attendant);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public void removeParticipant(Participant participant){
+    public void removeAttendant(Attendant attendant){
         try {
-            if (participants.contains(participant)){
-                participants.remove(participant);
+            if (attendants.contains(attendant)){
+                attendants.remove(attendant);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfParticipants(){
-        return this.participants.size();
+    public int getNumberOfAttendants(){
+        return this.attendants.size();
     }
     
     @Override

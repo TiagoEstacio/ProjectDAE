@@ -23,27 +23,27 @@ registado que estive presente nesse evento (exemplo: marcar presença no evento1
 de DAE de 14.out.2015).
  */
 @Entity
-@Table(name = "PARTICIPANTS")
+@Table(name = "ATTENDANTS")
 @NamedQueries({
     @NamedQuery(
-        name="getAllParticipants",
-        query="SELECT pa FROM Participant pa ORDER BY pa.id"
+        name="getAllAttendants",
+        query="SELECT at FROM Attendant at ORDER BY at.id"
     )
 })
-public class Participant extends User implements Serializable {
+public class Attendant extends User implements Serializable {
     
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "attendants")
     private List<Event> events;
     
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "attendants")
     private List<Category> categorys;
     
-    public Participant() {
+    public Attendant() {
         this.events = new LinkedList<>();
         this.categorys = new LinkedList<>();
     }
     
-    public Participant(String name, String email, String userName, String password) {
+    public Attendant(String name, String email, String userName, String password) {
         super(name, email, userName, password);
         this.events = new LinkedList<>();
         this.categorys = new LinkedList<>();
@@ -115,7 +115,7 @@ public class Participant extends User implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Participant[id=" + id + "]: "+ name;
+        return "entities.Attendant[id=" + id + "]: "+ name;
     }
     
 }

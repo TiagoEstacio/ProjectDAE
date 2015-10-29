@@ -7,7 +7,7 @@ package ejbs;
 
 import entities.Category;
 import entities.Event;
-import entities.Participant;
+import entities.Attendant;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -15,32 +15,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class ParticipantBean {
+public class AttendantBean {
 
     @PersistenceContext
     private EntityManager em;
     
-    public void createParticipant (String name, String email, String userName, String password){
+    public void createAttendant (String name, String email, String userName, String password){
         try {
-            Participant p = new Participant (name, email, userName, password);
+            Attendant p = new Attendant (name, email, userName, password);
             em.persist(p);
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public List<Participant> getAll() {
+    public List<Attendant> getAll() {
         try {
-            List<Participant> participants = (List<Participant>) em.createNamedQuery("getAllParticipants").getResultList();
-            return participants;
+            List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
+            return attendants;
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
  
-     public void updateParticipant (Long id, String name, String email, String userName, String password){
+     public void updateAttendant (Long id, String name, String email, String userName, String password){
         try {
-            Participant pUpdate = em.find(Participant.class, id);
+            Attendant pUpdate = em.find(Attendant.class, id);
             if (pUpdate == null){
                 return;
             }
@@ -54,9 +54,9 @@ public class ParticipantBean {
         }
      }
      
-     public void removeParticipant(Long id){
+     public void removeAttendant(Long id){
         try {
-            Participant pRemove = em.find(Participant.class, id);
+            Attendant pRemove = em.find(Attendant.class, id);
             if (pRemove == null){
                 return;
             }
@@ -66,50 +66,50 @@ public class ParticipantBean {
         } 
      }
      
-    public void enrollParticipantInEvent(Long idParticipant, Long idEvent){
+    public void enrollAttendantInEvent(Long idAttendant, Long idEvent){
         try {
-            Participant p = em.find(Participant.class, idParticipant);
+            Attendant a = em.find(Attendant.class, idAttendant);
             Event e = em.find(Event.class, idEvent);
         
-            e.addParticipant(p);
-            p.addEvent(e);
+            e.addAttendant(a);
+            a.addEvent(e);
         
             em.merge(e);
-            em.merge(p);
+            em.merge(a);
   
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
      }
 
-    public List<Event> getAllEventsOfParticipant(Participant currentParticipant) {
+    public List<Event> getAllEventsOfAttendant(Attendant currentAttendant) {
         try {
-            List<Event> events = currentParticipant.getEvents();
+            List<Event> events = currentAttendant.getEvents();
             return events; 
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public void enrollParticipantInCategory(Long idParticipant, Long idCategory){
+    public void enrollAttendantInCategory(Long idAttendant, Long idCategory){
         try {
-            Participant p = em.find(Participant.class, idParticipant);
+            Attendant a = em.find(Attendant.class, idAttendant);
             Category c = em.find(Category.class, idCategory);
         
-            c.addParticipant(p);
-            p.addCategory(c);
+            c.addAttendant(a);
+            a.addCategory(c);
         
             em.merge(c);
-            em.merge(c);
+            em.merge(a);
   
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
      }
 
-    public List<Category> getAllCategorysOfParticipant(Participant currentParticipant) {
+    public List<Category> getAllCategorysOfAttendant(Attendant currentAttendant) {
         try {
-            List<Category> categorys = currentParticipant.getCategorys();
+            List<Category> categorys = currentAttendant.getCategorys();
             return categorys; 
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
