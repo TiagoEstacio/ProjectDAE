@@ -20,7 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import sun.util.calendar.LocalGregorianCalendar.Date;
+
 
 
 @Entity
@@ -46,10 +46,10 @@ public class Event implements Serializable {
     private List<Category> categorys;
    
     @NotNull
-    private Date startDate;
+    private String startDate;
     
     @NotNull
-    private Date finishDate;
+    private String finishDate;
     
     @ManyToMany
     @JoinTable(name = "EVENTS_RESPONSIBLES",
@@ -73,7 +73,7 @@ public class Event implements Serializable {
         this.participants = new LinkedList<>();
     }
 
-    public Event(String name, Date startDate, Date finishDate) {
+    public Event(String name,String startDate, String finishDate) {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
@@ -114,19 +114,19 @@ public class Event implements Serializable {
         this.categorys = categorys;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinishDate() {
+    public String getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(String finishDate) {
         this.finishDate = finishDate;
     }
 
