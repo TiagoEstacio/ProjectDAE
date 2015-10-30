@@ -23,10 +23,10 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "CATEGORYS")
+@Table(name = "CATEGORIES")
 @NamedQueries({
     @NamedQuery(
-        name="getAllCategorys",
+        name="getAllCategories",
         query="SELECT ca FROM Category ca ORDER BY ca.id"
     )
 })
@@ -40,17 +40,17 @@ public class Category implements Serializable {
     private String name;
     
     @ManyToMany
-    @JoinTable(name = "CATEGORY_EVENTS",
+    @JoinTable(name = "CATEGORIES_EVENTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID_CATEGORY"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID_CATEGORIES"),
             inverseJoinColumns
             = @JoinColumn(name = "EVENTS_ID", referencedColumnName = "ID_EVENTS"))
     private List<Event> events;
     
     @ManyToMany
-    @JoinTable(name = "CATEGORY_ATTENDANTS",
+    @JoinTable(name = "CATEGORIES_ATTENDANTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID_CATEGORY"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID_CATEGORIES"),
             inverseJoinColumns
             = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID_ATTENDANTS"))
     private List<Attendant> attendants;

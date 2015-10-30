@@ -36,17 +36,17 @@ public class Attendant extends User implements Serializable {
     private List<Event> events;
     
     @ManyToMany(mappedBy = "attendants")
-    private List<Category> categorys;
+    private List<Category> categories;
     
     public Attendant() {
         this.events = new LinkedList<>();
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
     }
     
     public Attendant(String name, String email, String userName, String password) {
         super(name, email, userName, password);
         this.events = new LinkedList<>();
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
     }
 
     public List<Event> getEvents() {
@@ -57,12 +57,12 @@ public class Attendant extends User implements Serializable {
         this.events = events;
     }
 
-    public List<Category> getCategorys() {
-        return categorys;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategorys(List<Category> categorys) {
-        this.categorys = categorys;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
     
     public void addEvent(Event event){
@@ -91,8 +91,8 @@ public class Attendant extends User implements Serializable {
     
     public void addCategory(Category category){
         try {
-            if (!categorys.contains(category)){
-                categorys.add(category);
+            if (!categories.contains(category)){
+                categories.add(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
@@ -101,16 +101,16 @@ public class Attendant extends User implements Serializable {
     
     public void removeCategory(Category category){
         try {
-            if (categorys.contains(category)){
-                categorys.remove(category);
+            if (categories.contains(category)){
+                categories.remove(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfCategorys(){
-        return this.categorys.size();
+    public int getNumberOfCategories(){
+        return this.categories.size();
     }
 
     @Override

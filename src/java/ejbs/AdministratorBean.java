@@ -6,6 +6,7 @@
 package ejbs;
 
 import entities.Administrator;
+import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,4 +27,41 @@ public class AdministratorBean {
             throw new EJBException(ex.getMessage());
         }
     }
+    
+    public List<Administrator> getAllAdministrators() {
+        try {
+            List<Administrator> administrators = (List<Administrator>) em.createNamedQuery("getAllAdministrators").getResultList();
+            return administrators;
+        } catch (Exception ex) {
+            throw new EJBException(ex.getMessage());
+        }
+    }
+ 
+     public void updateAdministrator (Long id, String name, String email, String userName, String password){
+        try {
+            Administrator admUpdate = em.find(Administrator.class, id);
+            if (admUpdate == null){
+                return;
+            }
+            admUpdate.setName(name);
+            admUpdate.setEmail(email);
+            admUpdate.setUserName(userName);
+            admUpdate.setPassword(password);
+            em.merge(admUpdate);   
+        } catch (Exception ex) {
+            throw new EJBException(ex.getMessage());
+        }
+     }
+     
+     public void removeAdministrator(Long id){
+        try {
+            Administrator admRemove = em.find(Administrator.class, id);
+            if (admRemove == null){
+                return;
+            }
+            em.remove(admRemove);
+        } catch (Exception ex) {
+            throw new EJBException(ex.getMessage());
+        } 
+     }
 }

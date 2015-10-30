@@ -43,7 +43,7 @@ public class Event implements Serializable {
     private String description;
     
     @ManyToMany(mappedBy = "events")
-    private List<Category> categorys;
+    private List<Category> categories;
    
     @NotNull
     private String startDate;
@@ -66,9 +66,9 @@ public class Event implements Serializable {
             inverseJoinColumns
             = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID_ATTENDANTS"))
     private List<Attendant> attendants;
-    
+      
     public Event() {
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
         this.managers = new LinkedList<>();
         this.attendants = new LinkedList<>();
     }
@@ -77,7 +77,7 @@ public class Event implements Serializable {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
         this.managers = new LinkedList<>();
         this.attendants = new LinkedList<>();
     }
@@ -106,12 +106,12 @@ public class Event implements Serializable {
         this.description = description;
     }
 
-    public List<Category> getCategorys() {
-        return categorys;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategorys(List<Category> categorys) {
-        this.categorys = categorys;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public String getStartDate() {
@@ -148,8 +148,8 @@ public class Event implements Serializable {
     
     public void addCategory(Category category){
         try {
-            if (!categorys.contains(category)){
-                categorys.add(category);
+            if (!categories.contains(category)){
+                categories.add(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
@@ -158,16 +158,16 @@ public class Event implements Serializable {
     
     public void removeCategory(Category category){
         try {
-            if (categorys.contains(category)){
-                categorys.remove(category);
+            if (categories.contains(category)){
+                categories.remove(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfCategorys(){
-        return this.categorys.size();
+    public int getNumberOfCategories(){
+        return this.categories.size();
     }
     
     public void addManager(Manager manager){

@@ -29,7 +29,7 @@ public class AttendantBean {
         }
     }
     
-    public List<Attendant> getAll() {
+    public List<Attendant> getAllAttendants() {
         try {
             List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
             return attendants;
@@ -107,10 +107,10 @@ public class AttendantBean {
         }
      }
 
-    public List<Category> getAllCategorysOfAttendant(Attendant currentAttendant) {
+    public List<Category> getAllCategoriesOfAttendant(Attendant currentAttendant) {
         try {
-            List<Category> categorys = currentAttendant.getCategorys();
-            return categorys; 
+            List<Category> categories = currentAttendant.getCategories();
+            return categories; 
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
