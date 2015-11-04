@@ -33,7 +33,7 @@ possa manter atualizada a lista de participantes de determinado evento;
         query="SELECT us FROM User us ORDER BY us.id"
     )
 })
-public class User implements Serializable {
+public abstract class User implements Serializable {
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,6 +59,7 @@ public class User implements Serializable {
     }
 
     public User(String name, String email, String userName, String password) {
+        
         this.name = name;
         this.email = email;
         this.userName = userName;

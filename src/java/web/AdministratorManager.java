@@ -29,10 +29,7 @@ import javax.faces.event.ActionEvent;
 @ManagedBean
 @SessionScoped
 public class AdministratorManager { 
-    
-    public AdministratorManager() {
-    }
-    
+     
     @EJB
     private AdministratorBean administratorBean;
     @EJB
@@ -85,7 +82,11 @@ public class AdministratorManager {
     private Manager currentManagerM;
     private Attendant currentAttendantM;
     private Event currentEventM;
+    private Administrator currentAdministratorM;
 
+    public AdministratorManager() {
+    }
+   
     public Long getAdminId() {
         return adminId;
     }
@@ -317,6 +318,14 @@ public class AdministratorManager {
     public void setCurrentEventM(Event currentEventM) {
         this.currentEventM = currentEventM;
     }
+    public Administrator getCurrentAdministratorM() {
+        return currentAdministratorM;
+    }
+
+    public void setCurrentAdministratorM(Administrator currentAdministratorM) {
+        this.currentAdministratorM = currentAdministratorM;
+    }
+
 
     public String createAdministrator(){
         try {

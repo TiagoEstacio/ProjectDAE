@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 public class AdministratorBean {
 
     @PersistenceContext
-    private EntityManager em;
+    EntityManager em;
     
     public void createAdministrator (String name, String email, String userName, String password){
         try {

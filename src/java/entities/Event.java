@@ -54,17 +54,17 @@ public class Event implements Serializable {
     @ManyToMany
     @JoinTable(name = "EVENTS_MANAGERS",
             joinColumns
-            = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID_EVENT"),
+            = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "MANAGERS_ID", referencedColumnName = "ID_MANAGERS"))
+            = @JoinColumn(name = "MANAGERS_ID", referencedColumnName = "ID"))
     private List<Manager> managers;
     
     @ManyToMany
     @JoinTable(name = "EVENTS_ATTENDANTS",
             joinColumns
-            = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID_EVENT"),
+            = @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID_ATTENDANTS"))
+            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID"))
     private List<Attendant> attendants;
       
     public Event() {

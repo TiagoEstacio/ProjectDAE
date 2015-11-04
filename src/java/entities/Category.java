@@ -42,17 +42,17 @@ public class Category implements Serializable {
     @ManyToMany
     @JoinTable(name = "CATEGORIES_EVENTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID_CATEGORIES"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "EVENTS_ID", referencedColumnName = "ID_EVENTS"))
+            = @JoinColumn(name = "EVENTS_ID", referencedColumnName = "ID"))
     private List<Event> events;
     
     @ManyToMany
     @JoinTable(name = "CATEGORIES_ATTENDANTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID_CATEGORIES"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID_ATTENDANTS"))
+            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID"))
     private List<Attendant> attendants;
     
     public Category() {

@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
 *listar os meus eventos, para que possa estar a par dos mesmos (exemplo: listar as aulas do responsável
@@ -27,7 +26,7 @@ lista de presenças desse evento fique atualizada (exemplo: marcar ou remover a 
 previamente marcada do aluno1@my.ipleiria.pt no evento1: aula T de DAE de 14.out.2015) ;
  */
 @Entity
-@Table(name = "MANAGERS")
+//@Table(name = "MANAGERS")
 @NamedQueries({
     @NamedQuery(
         name="getAllManagers",
