@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
 *listar os meus eventos, para que possa estar a par dos mesmos (exemplo: listar as aulas do participante aluno1@my.ipleiria.pt);
@@ -23,30 +22,30 @@ registado que estive presente nesse evento (exemplo: marcar presença no evento1
 de DAE de 14.out.2015).
  */
 @Entity
-@Table(name = "PARTICIPANTS")
+//@Table(name = "ATTENDANTS")
 @NamedQueries({
     @NamedQuery(
-        name="getAllParticipants",
-        query="SELECT pa FROM Participant pa ORDER BY pa.id"
+        name="getAllAttendants",
+        query="SELECT at FROM Attendant at ORDER BY at.id"
     )
 })
-public class Participant extends User implements Serializable {
+public class Attendant extends User implements Serializable {
     
-    @ManyToMany(mappedBy = "participants")
+    @ManyToMany(mappedBy = "attendants")
     private List<Event> events;
     
-    @ManyToMany(mappedBy = "participants")
-    private List<Category> categorys;
+    @ManyToMany(mappedBy = "attendants")
+    private List<Category> categories;
     
-    public Participant() {
+    public Attendant() {
         this.events = new LinkedList<>();
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
     }
     
-    public Participant(String name, String email, String userName, String password) {
+    public Attendant(String name, String email, String userName, String password) {
         super(name, email, userName, password);
         this.events = new LinkedList<>();
-        this.categorys = new LinkedList<>();
+        this.categories = new LinkedList<>();
     }
 
     public List<Event> getEvents() {
@@ -57,12 +56,12 @@ public class Participant extends User implements Serializable {
         this.events = events;
     }
 
-    public List<Category> getCategorys() {
-        return categorys;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategorys(List<Category> categorys) {
-        this.categorys = categorys;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
     
     public void addEvent(Event event){
@@ -91,8 +90,8 @@ public class Participant extends User implements Serializable {
     
     public void addCategory(Category category){
         try {
-            if (!categorys.contains(category)){
-                categorys.add(category);
+            if (!categories.contains(category)){
+                categories.add(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
@@ -101,21 +100,21 @@ public class Participant extends User implements Serializable {
     
     public void removeCategory(Category category){
         try {
-            if (categorys.contains(category)){
-                categorys.remove(category);
+            if (categories.contains(category)){
+                categories.remove(category);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfCategorys(){
-        return this.categorys.size();
+    public int getNumberOfCategories(){
+        return this.categories.size();
     }
 
     @Override
     public String toString() {
-        return "entities.Participant[id=" + id + "]: "+ name;
+        return "entities.Attendant[id=" + id + "]: "+ name;
     }
     
 }

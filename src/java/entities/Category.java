@@ -23,10 +23,10 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "CATEGORYS")
+@Table(name = "CATEGORIES")
 @NamedQueries({
     @NamedQuery(
-        name="getAllCategorys",
+        name="getAllCategories",
         query="SELECT ca FROM Category ca ORDER BY ca.id"
     )
 })
@@ -40,30 +40,30 @@ public class Category implements Serializable {
     private String name;
     
     @ManyToMany
-    @JoinTable(name = "CATEGORY_EVENTS",
+    @JoinTable(name = "CATEGORIES_EVENTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID_CATEGORY"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "EVENTS_ID", referencedColumnName = "ID_EVENTS"))
+            = @JoinColumn(name = "EVENTS_ID", referencedColumnName = "ID"))
     private List<Event> events;
     
     @ManyToMany
-    @JoinTable(name = "CATEGORY_PARTICIPANTS",
+    @JoinTable(name = "CATEGORIES_ATTENDANTS",
             joinColumns
-            = @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "ID_CATEGORY"),
+            = @JoinColumn(name = "CATEGORIES_ID", referencedColumnName = "ID"),
             inverseJoinColumns
-            = @JoinColumn(name = "PARTICIPANTS_ID", referencedColumnName = "ID_PARTICIPANTS"))
-    private List<Participant> participants;
+            = @JoinColumn(name = "ATTENDANTS_ID", referencedColumnName = "ID"))
+    private List<Attendant> attendants;
     
     public Category() {
         this.events = new LinkedList<>();
-        this.participants = new LinkedList<>();
+        this.attendants = new LinkedList<>();
     }
 
     public Category(String name) {
         this.name = name;
         this.events = new LinkedList<>();
-        this.participants = new LinkedList<>();
+        this.attendants = new LinkedList<>();
     }
 
     public Long getId() {
@@ -90,12 +90,12 @@ public class Category implements Serializable {
         this.events = events;
     }
 
-    public List<Participant> getParticipants() {
-        return participants;
+    public List<Attendant> getAttendants() {
+        return attendants;
     }
 
-    public void setParticipants(List<Participant> participants) {
-        this.participants = participants;
+    public void setAttendants(List<Attendant> attendants) {
+        this.attendants = attendants;
     }
 
     public void addEvent(Event event){
@@ -122,28 +122,28 @@ public class Category implements Serializable {
         return this.events.size();
     }    
     
-    public void addParticipant(Participant participant){
+    public void addAttendant(Attendant attendant){
         try {
-            if (!participants.contains(participant)){
-                participants.add(participant);
+            if (!attendants.contains(attendant)){
+                attendants.add(attendant);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public void removeParticipant(Participant participant){
+    public void removeAttendant(Attendant attendant){
         try {
-            if (participants.contains(participant)){
-                participants.remove(participant);
+            if (attendants.contains(attendant)){
+                attendants.remove(attendant);
             }
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
     }
     
-    public int getNumberOfParticipants(){
-        return this.participants.size();
+    public int getNumberOfAttendants(){
+        return this.attendants.size();
     }
     
     @Override

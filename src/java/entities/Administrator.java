@@ -6,124 +6,125 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
-import javax.ejb.EJBException;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
-* criar, consultar/listar, atualizar e remover um utilizador (administrador, responsável ou participante), para que possa manter
-atualizada a lista de utilizadores da aplicação empresarial;
-
- criar, consultar/listar, atualizar e remover eventos de calendário (aulas, reuniões, seminários, etc.), para que possa manter
-atualizada a lista de eventos onde ocorrerá uma marcação/verificação de presenças;
-
- criar, consultar/listar, atualizar e remover um utilizador responsável por determinado evento (exemplo: evento1 - aula de DAE T,
-quartas-feiras, 18h-20h, sala A.S.2.12, semanas 38:51, 1:2, responsável: ricardo.martinho@ipleiria.pt);
- 
- Administrator/Responsavel
- criar, consultar/listar, e remover um ou mais utilizadores participantes em determinado
-evento (exemplo: remover utilizador participante externo1@email.com do evento1;
-adicionar lista de utilizadores participantes via copy/paste dos seus ids ao evento1;
-adicionar lista de utilizadores participantes via outra classificação predefinida, como por
-exemplo, todos os participantes classificados como inscritos à UC de DAE), para que
-possa manter atualizada a lista de participantes de determinado evento;
-
+ * criar, consultar/listar, atualizar e remover um utilizador (administrador,
+ * responsável ou participante), para que possa manter atualizada a lista de
+ * utilizadores da aplicação empresarial;
+ *
+ * criar, consultar/listar, atualizar e remover eventos de calendário (aulas,
+ * reuniões, seminários, etc.), para que possa manter atualizada a lista de
+ * eventos onde ocorrerá uma marcação/verificação de presenças;
+ *
+ * criar, consultar/listar, atualizar e remover um utilizador responsável por
+ * determinado evento (exemplo: evento1 - aula de DAE T, quartas-feiras,
+ * 18h-20h, sala A.S.2.12, semanas 38:51, 1:2, responsável:
+ * ricardo.martinho@ipleiria.pt);
+ *
+ * Administrator/Responsavel criar, consultar/listar, e remover um ou mais
+ * utilizadores participantes em determinado evento (exemplo: remover utilizador
+ * participante externo1@email.com do evento1; adicionar lista de utilizadores
+ * participantes via copy/paste dos seus ids ao evento1; adicionar lista de
+ * utilizadores participantes via outra classificação predefinida, como por
+ * exemplo, todos os participantes classificados como inscritos à UC de DAE),
+ * para que possa manter atualizada a lista de participantes de determinado
+ * evento;
+ *
  */
 @Entity
-@Table(name = "ADMINISTRATORS")
+//@Table(name = "ADMINISTRATORS")
 @NamedQueries({
     @NamedQuery(
-        name="getAllAdministrators",
-        query="SELECT ad FROM Administrator ad ORDER BY ad.id"
+            name = "getAllAdministrators",
+            query = "SELECT adm FROM Administrator adm ORDER BY adm.id"
     )
 })
 public class Administrator extends User implements Serializable {
 
-    private List<User> users;
-    private List<Event> events;
-    
+    //private List<User> users;
+    //private List<Event> events;
+
     public Administrator() {
-        this.users = new LinkedList<>();
-        this.events = new LinkedList<>();
+        //this.users = new LinkedList<>();
+        //this.events = new LinkedList<>();
     }
 
     public Administrator(String name, String email, String userName, String password) {
         super(name, email, userName, password);
-        this.users = new LinkedList<>();
-        this.events = new LinkedList<>();
+        //this.users = new LinkedList<>();
+        //this.events = new LinkedList<>();
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-    
-    public void addUser(User user){
-        try {
-            if (!users.contains(user)){
-                users.add(user);
-            }
-        } catch (Exception ex) {
-            throw new EJBException(ex.getMessage());
-        }
-    }
-    
-    public void removeUser(User user){
-        try {
-            if (users.contains(user)){
-                users.remove(user);
-            }
-        } catch (Exception ex) {
-            throw new EJBException(ex.getMessage());
-        }
-    }
-    
-    public int getNumberOfUsers(){
-        return this.users.size();
-    }
-    
-     public void addEvent(Event event){
-        try {
-            if (!events.contains(event)){
-                events.add(event);
-            }
-        } catch (Exception ex) {
-            throw new EJBException(ex.getMessage());
-        }
-    }
-    
-    public void removeEvent(Event event){
-        try {
-            if (events.contains(event)){
-                events.remove(event);
-            }
-        } catch (Exception ex) {
-            throw new EJBException(ex.getMessage());
-        }
-    }
-    
-    public int getNumberOfEvents(){
-        return this.events.size();
-    }
+//    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
+//
+//    public List<Event> getEvents() {
+//        return events;
+//    }
+//
+//    public void setEvents(List<Event> events) {
+//        this.events = events;
+//    }
+//
+//    public void addUser(User user) {
+//        try {
+//            if (!users.contains(user)) {
+//                users.add(user);
+//            }
+//        } catch (Exception ex) {
+//            throw new EJBException(ex.getMessage());
+//        }
+//    }
+//
+//    public void removeUser(User user) {
+//        try {
+//            if (users.contains(user)) {
+//                users.remove(user);
+//            }
+//        } catch (Exception ex) {
+//            throw new EJBException(ex.getMessage());
+//        }
+//    }
+//
+//    public int getNumberOfUsers() {
+//        return this.users.size();
+//    }
+//
+//    public void addEvent(Event event) {
+//        try {
+//            if (!events.contains(event)) {
+//                events.add(event);
+//            }
+//        } catch (Exception ex) {
+//            throw new EJBException(ex.getMessage());
+//        }
+//    }
+//
+//    public void removeEvent(Event event) {
+//        try {
+//            if (events.contains(event)) {
+//                events.remove(event);
+//            }
+//        } catch (Exception ex) {
+//            throw new EJBException(ex.getMessage());
+//        }
+//    }
+//
+//    public int getNumberOfEvents() {
+//        return this.events.size();
+//    }
 
     @Override
     public String toString() {
-        return "entities.Administrator[id=" + id + "]: "+ name;
+        return "entities.Administrator[id=" + id + "]: " + name;
     }
-    
+
 }

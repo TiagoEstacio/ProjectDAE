@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
 *listar os meus eventos, para que possa estar a par dos mesmos (exemplo: listar as aulas do responsável
@@ -27,23 +26,23 @@ lista de presenças desse evento fique atualizada (exemplo: marcar ou remover a 
 previamente marcada do aluno1@my.ipleiria.pt no evento1: aula T de DAE de 14.out.2015) ;
  */
 @Entity
-@Table(name = "RESPONSIBLES")
+//@Table(name = "MANAGERS")
 @NamedQueries({
     @NamedQuery(
-        name="getAllResponsibles",
-        query="SELECT re FROM Responsible re ORDER BY re.id"
+        name="getAllManagers",
+        query="SELECT ma FROM Manager ma ORDER BY ma.id"
     )
 })
-public class Responsible extends User implements Serializable {
+public class Manager extends User implements Serializable {
     
-    @ManyToMany(mappedBy = "responsibles")
+    @ManyToMany(mappedBy = "managers")
     private List<Event> events;
 
-    public Responsible() {
+    public Manager() {
         this.events = new LinkedList<>();
     }
 
-    public Responsible(String name, String email, String userName, String password) {
+    public Manager(String name, String email, String userName, String password) {
         super(name, email, userName, password);
         this.events = new LinkedList<>();
     }
@@ -82,7 +81,7 @@ public class Responsible extends User implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Resposible[id=" + id + "]: "+ name;
+        return "entities.Manager[id=" + id + "]: "+ name;
     }
     
 }
